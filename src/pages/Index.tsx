@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Package, FileText, Umbrella, Printer, Palette, Lightbulb, Settings, Target } from "lucide-react";
 import { Link } from "react-router-dom";
+import ImageSlider from "@/components/ImageSlider";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 const Index = () => {
@@ -29,7 +30,7 @@ const Index = () => {
     {
       icon: Palette,
       title: "Designing",
-      description: "Creative design services to bring your brand vision to life."
+      description: "Creative design services to bring your Brand vision to life."
     }
   ];
 
@@ -80,13 +81,32 @@ const Index = () => {
       {/* Introduction Section */}
       <section className="py-20 bg-background/50 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black text-gradient mb-8">
-              Welcome to A2Z Solutions
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              We deliver innovative promotional materials, POSMs, merchandise, printing, and corporate gifting that set your brand apart. Our dedicated team designs, sources, and develops unique products tailored to your brand's guidelines.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Image Slider */}
+            <div className="h-96 w-full">
+              <ImageSlider 
+                images={[
+                  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
+                  "https://images.unsplash.com/photo-1664382953518-4ba5bb8b5a0f?w=600&h=400&fit=crop&crop=center",
+                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center",
+                  "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&crop=center"
+                ]}
+                autoSlideInterval={4000}
+              />
+            </div>
+            
+            {/* Right Column - Content */}
+            <div className="text-left">
+              <h2 className="text-4xl md:text-5xl font-black text-gradient mb-8">
+                Welcome to A2Z Solutions
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                We deliver innovative promotional materials, POSMs, merchandise, printing, and corporate gifting that set your brand apart. Our dedicated team designs, sources, and develops unique products tailored to your brand's guidelines.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                From creative concepts to final delivery, we ensure every project reflects your brand's unique identity and meets the highest quality standards.
+              </p>
+            </div>
           </div>
         </div>
       </section>
