@@ -2,17 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Package, FileText, Umbrella, Printer, Palette, Lightbulb, Settings, Target } from "lucide-react";
 import { Link } from "react-router-dom";
-import VideoBackground from "@/components/WaterRippleEffect";
-import ImageSlider from "@/components/ImageSlider";
+import heroBanner from "@/assets/hero-banner.jpg";
 
 const Index = () => {
-  // Image slider data - you can replace these with your actual images
-  const sliderImages = [
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F5FF;stop-opacity:0.8'/%3E%3Cstop offset='100%25' style='stop-color:%23FF2E92;stop-opacity:0.8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad1)'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' fill='white' font-size='24' font-weight='bold'%3EA2Z Solutions%3C/text%3E%3Ctext x='50%25' y='60%25' text-anchor='middle' fill='white' font-size='18'%3EMerchandise & Branding%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Cdefs%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23A020F0;stop-opacity:0.8'/%3E%3Cstop offset='100%25' style='stop-color:%2300F5FF;stop-opacity:0.8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad2)'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' fill='white' font-size='24' font-weight='bold'%3ECustom Printing%3C/text%3E%3Ctext x='50%25' y='60%25' text-anchor='middle' fill='white' font-size='18'%3EHigh-Quality Materials%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Cdefs%3E%3ClinearGradient id='grad3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF2E92;stop-opacity:0.8'/%3E%3Cstop offset='100%25' style='stop-color:%23A020F0;stop-opacity:0.8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad3)'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' fill='white' font-size='24' font-weight='bold'%3ECreative Design%3C/text%3E%3Ctext x='50%25' y='60%25' text-anchor='middle' fill='white' font-size='18'%3EInnovative Solutions%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Cdefs%3E%3ClinearGradient id='grad4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F5FF;stop-opacity:0.8'/%3E%3Cstop offset='100%25' style='stop-color:%23A020F0;stop-opacity:0.8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad4)'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' fill='white' font-size='24' font-weight='bold'%3ECorporate Gifts%3C/text%3E%3Ctext x='50%25' y='60%25' text-anchor='middle' fill='white' font-size='18'%3EPremium Quality%3C/text%3E%3C/svg%3E"
-  ];
   const services = [
     {
       icon: Package,
@@ -62,52 +54,39 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-animated">
       {/* Hero Section */}
-      <section className="py-32 relative overflow-hidden">
-        <VideoBackground />
-        <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-transparent to-neon-pink/10"></div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-6xl md:text-8xl font-black mb-8 leading-tight">
-            All Kind of <span className="text-gradient">Solutions</span> Partner
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            Your ultimate customized marketing solution partner
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link to="/services" className="btn-neon text-background font-semibold text-lg px-8 py-4 inline-flex items-center">
-              Explore Services
-              <ArrowRight className="h-5 w-5 ml-2" />
-            </Link>
-            <Link to="/contact" className="px-8 py-4 rounded-lg font-semibold text-lg border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-background transition-all duration-300 inline-flex items-center">
-              Contact Us
-            </Link>
-          </div>
+      <section className="relative flex h-screen items-center justify-center overflow-hidden bg-black text-center text-white">
+      {/* Ripple background */}
+      <div className="absolute inset-0 animate-ripple bg-[radial-gradient(circle_at_30%_30%,rgba(0,245,255,0.1),transparent_20%),radial-gradient(circle_at_70%_70%,rgba(255,46,146,0.1),transparent_20%)] blur-2xl pointer-events-none"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-3xl px-6">
+        <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#00F5FF] via-[#FF2E92] to-[#A020F0] bg-clip-text text-transparent">
+          All Kind of Solutions Partner
+        </h1>
+        <p className="mt-4 text-lg text-gray-300">
+          Your ultimate customized marketing solution partner
+        </p>
+        <div className="mt-6 flex justify-center gap-4">
+          <button className="rounded-full px-6 py-3 bg-gradient-to-r from-[#00F5FF] to-[#FF2E92] text-black font-semibold shadow-lg hover:shadow-[#00F5FF]/50 transition">
+            Explore Services
+          </button>
+          <button className="rounded-full px-6 py-3 border border-gray-500 text-white hover:border-[#A020F0] transition">
+            Contact Us
+          </button>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Introduction Section */}
       <section className="py-20 bg-background/50 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Image Slider */}
-            <div className="h-96 w-full">
-              <ImageSlider 
-                images={sliderImages} 
-                autoSlideInterval={4000}
-              />
-            </div>
-            
-            {/* Right side - Content */}
-            <div className="text-center lg:text-left">
-              <h2 className="text-4xl md:text-5xl font-black text-stone-100 mb-8">
-                Welcome to A2Z Solutions
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We deliver innovative promotional materials, POSMs, merchandise, printing, and corporate gifting that set your brand apart. Our dedicated team designs, sources, and develops unique products tailored to your brand's guidelines.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                From concept to completion, we ensure every project reflects your brand's excellence and drives meaningful engagement with your target audience.
-              </p>
-            </div>
+          <div className="text-center max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-black text-gradient mb-8">
+              Welcome to A2Z Solutions
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              We deliver innovative promotional materials, POSMs, merchandise, printing, and corporate gifting that set your brand apart. Our dedicated team designs, sources, and develops unique products tailored to your brand's guidelines.
+            </p>
           </div>
         </div>
       </section>
@@ -116,7 +95,7 @@ const Index = () => {
       <section className="py-20 relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-stone-100 mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gradient mb-4">
               Our Services
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -146,7 +125,7 @@ const Index = () => {
       <section className="py-20 bg-background/50 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-stone-100 mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gradient mb-4">
               Why Choose Us?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -176,7 +155,7 @@ const Index = () => {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/5 to-neon-blue/5"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <h2 className="text-4xl md:text-5xl font-black text-stone-100 mb-6">
+          <h2 className="text-4xl md:text-5xl font-black text-gradient mb-6">
             Ready to Elevate Your Brand?
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
