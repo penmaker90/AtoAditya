@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* A2Z Solutions Design System - Futuristic Neon Theme */
+
+@layer base {
+  :root {
+    /* Dark Background Theme */
+    --background: 222 84% 5%;
+    --foreground: 210 40% 95%;
+
+    --card: 222 84% 7%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 222 84% 7%;
+    --popover-foreground: 210 40% 95%;
+
+    /* Neon Primary Colors */
+    --primary: 188 100% 50%; /* Neon Blue #00F5FF */
+    --primary-foreground: 222 84% 5%;
+    --primary-hover: 188 100% 45%;
+    --primary-light: 188 100% 90%;
+
+    /* Neon Accent Colors */
+    --neon-pink: 330 100% 58%; /* #FF2E92 */
+    --neon-purple: 276 100% 51%; /* #A020F0 */
+    --neon-blue: 188 100% 50%; /* #00F5FF */
+
+    /* Secondary Colors - Dark Greys */
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 222 47% 11%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 222 47% 15%;
+    --accent-foreground: 210 40% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 95%;
+
+    --border: 222 47% 15%;
+    --input: 222 47% 15%;
+    --ring: 188 100% 50%;
+
+    /* Neon Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(188 100% 50%), hsl(330 100% 58%), hsl(276 100% 51%));
+    --gradient-neon: linear-gradient(45deg, hsl(188 100% 50%), hsl(330 100% 58%));
+    --gradient-card: linear-gradient(145deg, hsl(222 84% 7%), hsl(222 47% 11%));
+    --gradient-text: linear-gradient(90deg, hsl(188 100% 50%), hsl(330 100% 58%), hsl(276 100% 51%));
+
+    /* Neon Shadows & Glows */
+    --shadow-neon: 0 0 20px hsl(188 100% 50% / 0.5), 0 0 40px hsl(188 100% 50% / 0.3);
+    --shadow-neon-pink: 0 0 20px hsl(330 100% 58% / 0.5), 0 0 40px hsl(330 100% 58% / 0.3);
+    --shadow-neon-purple: 0 0 20px hsl(276 100% 51% / 0.5), 0 0 40px hsl(276 100% 51% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(210 40% 95% / 0.1);
+    --shadow-button: 0 0 15px hsl(188 100% 50% / 0.4);
+
+    /* Typography Scale */
+    --text-hero: 4rem;
+    --text-heading: 2.5rem;
+    --text-subheading: 1.75rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .light {
+    /* Light theme for optional toggle */
+    --background: 0 0% 100%;
+    --foreground: 215 28% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+    --primary: 188 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 17% 95%;
+    --secondary-foreground: 215 28% 17%;
+    --muted: 210 17% 95%;
+    --muted-foreground: 215 15% 55%;
+    --accent: 188 100% 96%;
+    --accent-foreground: 188 100% 50%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 188 100% 50%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 188 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    background-image: radial-gradient(circle at 25% 25%, hsl(188 100% 50% / 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, hsl(330 100% 58% / 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  /* Neon Button Styles */
+  .btn-neon {
+    @apply relative px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(45deg, hsl(var(--neon-blue)), hsl(var(--neon-pink)));
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .btn-neon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(45deg, hsl(var(--neon-blue)), hsl(var(--neon-pink)));
+  }
+
+  .btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-neon);
+  }
+
+  /* Neon Card Styles */
+  .card-neon {
+    @apply bg-card rounded-xl p-6 border border-border/20 relative overflow-hidden;
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--accent)));
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-neon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+      hsl(var(--neon-blue) / 0.1), 
+      hsl(var(--neon-pink) / 0.1), 
+      hsl(var(--neon-purple) / 0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+  }
+
+  .card-neon:hover::before {
+    opacity: 1;
+  }
+
+  .card-neon:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-neon);
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Neon Glow Effect */
+  .glow-neon {
+    filter: drop-shadow(0 0 10px hsl(var(--neon-blue) / 0.5));
+  }
+
+  /* Animated Background */
+  .bg-animated {
+    background: linear-gradient(-45deg, 
+      hsl(var(--background)), 
+      hsl(var(--card)), 
+      hsl(var(--accent)), 
+      hsl(var(--background))
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Form Styles */
+  .input-neon {
+    @apply bg-background/50 border border-border/30 rounded-lg px-4 py-3 text-foreground;
+    backdrop-filter: blur(10px);
+  }
+
+  .input-neon:focus {
+    @apply outline-none ring-2 ring-primary/50;
+    box-shadow: var(--shadow-neon);
+  }
+
+  /* Video Background - Only for hero sections */
+  .video-background {
+    @apply absolute inset-0;
+    z-index: 1;
+  }
+
+  .video-background-element {
+    @apply w-full h-full object-cover;
+    opacity: 1;
+    filter: brightness(1.2) contrast(1.1);
+  }
+
+  .video-overlay {
+    @apply absolute inset-0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+  }
+
+  /* Ensure content appears above video */
+  nav, main, footer, .navbar, .footer {
+    position: relative;
+    z-index: 10;
+  }
+}
