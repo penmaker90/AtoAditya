@@ -2,115 +2,139 @@
 @tailwind components;
 @tailwind utilities;
 
-/* A2Z Solutions Design System - Futuristic Neon Theme */
+/* A2Z Solutions Design System - Light/Dark Theme */
 
 @layer base {
   :root {
-    /* Dark Background Theme */
-    --background: 222 84% 5%;
-    --foreground: 210 40% 95%;
-
-    --card: 222 84% 7%;
-    --card-foreground: 210 40% 95%;
-
-    --popover: 222 84% 7%;
-    --popover-foreground: 210 40% 95%;
-
+    /* Light Mode - Default */
+    --background: 0 0% 100%;
+    --foreground: 215 28% 17%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+    
     /* Neon Primary Colors */
-    --primary: 188 100% 50%; /* Neon Blue #00F5FF */
-    --primary-foreground: 222 84% 5%;
-    --primary-hover: 188 100% 45%;
-    --primary-light: 188 100% 90%;
-
+    --primary: 188 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 188 100% 40%;
+    --primary-light: 188 100% 96%;
+    
     /* Neon Accent Colors */
-    --neon-pink: 330 100% 58%; /* #FF2E92 */
-    --neon-purple: 276 100% 51%; /* #A020F0 */
-    --neon-blue: 188 100% 50%; /* #00F5FF */
-
-    /* Secondary Colors - Dark Greys */
-    --secondary: 222 47% 11%;
-    --secondary-foreground: 210 40% 95%;
-
-    --muted: 222 47% 11%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 222 47% 15%;
-    --accent-foreground: 210 40% 95%;
-
+    --neon-pink: 330 100% 55%;
+    --neon-purple: 276 100% 48%;
+    --neon-blue: 188 100% 45%;
+    
+    /* Secondary Colors - Light Greys */
+    --secondary: 210 17% 95%;
+    --secondary-foreground: 215 28% 17%;
+    
+    --muted: 210 17% 95%;
+    --muted-foreground: 215 15% 55%;
+    
+    --accent: 188 100% 96%;
+    --accent-foreground: 188 100% 45%;
+    
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 95%;
-
-    --border: 222 47% 15%;
-    --input: 222 47% 15%;
-    --ring: 188 100% 50%;
-
-    /* Neon Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(188 100% 50%), hsl(330 100% 58%), hsl(276 100% 51%));
-    --gradient-neon: linear-gradient(45deg, hsl(188 100% 50%), hsl(330 100% 58%));
-    --gradient-card: linear-gradient(145deg, hsl(222 84% 7%), hsl(222 47% 11%));
-    --gradient-text: linear-gradient(90deg, hsl(188 100% 50%), hsl(330 100% 58%), hsl(276 100% 51%));
-
-    /* Neon Shadows & Glows */
-    --shadow-neon: 0 0 20px hsl(188 100% 50% / 0.5), 0 0 40px hsl(188 100% 50% / 0.3);
-    --shadow-neon-pink: 0 0 20px hsl(330 100% 58% / 0.5), 0 0 40px hsl(330 100% 58% / 0.3);
-    --shadow-neon-purple: 0 0 20px hsl(276 100% 51% / 0.5), 0 0 40px hsl(276 100% 51% / 0.3);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(210 40% 95% / 0.1);
-    --shadow-button: 0 0 15px hsl(188 100% 50% / 0.4);
-
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 188 100% 45%;
+    
+    /* Light Mode Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(188 100% 45%), hsl(330 100% 55%), hsl(276 100% 48%));
+    --gradient-neon: linear-gradient(45deg, hsl(188 100% 45%), hsl(330 100% 55%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 17% 98%));
+    --gradient-text: linear-gradient(90deg, hsl(188 100% 45%), hsl(330 100% 55%), hsl(276 100% 48%));
+    
+    /* Light Mode Shadows & Glows */
+    --shadow-neon: 0 0 15px hsl(188 100% 45% / 0.3), 0 0 30px hsl(188 100% 45% / 0.15);
+    --shadow-neon-pink: 0 0 15px hsl(330 100% 55% / 0.3), 0 0 30px hsl(330 100% 55% / 0.15);
+    --shadow-neon-purple: 0 0 15px hsl(276 100% 48% / 0.3), 0 0 30px hsl(276 100% 48% / 0.15);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.8);
+    --shadow-button: 0 0 10px hsl(188 100% 45% / 0.3);
+    
     /* Typography Scale */
     --text-hero: 4rem;
     --text-heading: 2.5rem;
     --text-subheading: 1.75rem;
     --text-body: 1rem;
     --text-small: 0.875rem;
-
+    
     --radius: 0.75rem;
-
+    
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 188 100% 45%;
   }
-
-  .light {
-    /* Light theme for optional toggle */
-    --background: 0 0% 100%;
-    --foreground: 215 28% 17%;
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 17%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
+  
+  .dark {
+    /* Dark Mode */
+    --background: 222 84% 5%;
+    --foreground: 210 40% 95%;
+    
+    --card: 222 84% 7%;
+    --card-foreground: 210 40% 95%;
+    
+    --popover: 222 84% 7%;
+    --popover-foreground: 210 40% 95%;
+    
+    /* Neon Primary Colors */
     --primary: 188 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 17% 95%;
-    --secondary-foreground: 215 28% 17%;
-    --muted: 210 17% 95%;
-    --muted-foreground: 215 15% 55%;
-    --accent: 188 100% 96%;
-    --accent-foreground: 188 100% 50%;
+    --primary-foreground: 222 84% 5%;
+    --primary-hover: 188 100% 45%;
+    --primary-light: 188 100% 90%;
+    
+    /* Neon Accent Colors */
+    --neon-pink: 330 100% 58%;
+    --neon-purple: 276 100% 51%;
+    --neon-blue: 188 100% 50%;
+    
+    /* Secondary Colors - Dark Greys */
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 95%;
+    
+    --muted: 222 47% 11%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 222 47% 15%;
+    --accent-foreground: 210 40% 95%;
+    
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --destructive-foreground: 210 40% 95%;
+    
+    --border: 222 47% 15%;
+    --input: 222 47% 15%;
     --ring: 188 100% 50%;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
+    
+    /* Dark Mode Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(188 100% 50%), hsl(330 100% 58%), hsl(276 100% 51%));
+    --gradient-neon: linear-gradient(45deg, hsl(188 100% 50%), hsl(330 100% 58%));
+    --gradient-card: linear-gradient(145deg, hsl(222 84% 7%), hsl(222 47% 11%));
+    --gradient-text: linear-gradient(90deg, hsl(188 100% 50%), hsl(330 100% 58%), hsl(276 100% 51%));
+    
+    /* Dark Mode Shadows & Glows */
+    --shadow-neon: 0 0 20px hsl(188 100% 50% / 0.5), 0 0 40px hsl(188 100% 50% / 0.3);
+    --shadow-neon-pink: 0 0 20px hsl(330 100% 58% / 0.5), 0 0 40px hsl(330 100% 58% / 0.3);
+    --shadow-neon-purple: 0 0 20px hsl(276 100% 51% / 0.5), 0 0 40px hsl(276 100% 51% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(210 40% 95% / 0.1);
+    --shadow-button: 0 0 15px hsl(188 100% 50% / 0.4);
+    
+    --sidebar-background: 222 84% 4%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 188 100% 50%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 222 47% 15%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 222 47% 15%;
     --sidebar-ring: 188 100% 50%;
   }
 }
@@ -120,10 +144,19 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-inter;
-    background-image: radial-gradient(circle at 25% 25%, hsl(188 100% 50% / 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 75% 75%, hsl(330 100% 58% / 0.1) 0%, transparent 50%);
+    background-image: radial-gradient(circle at 25% 25%, hsl(var(--neon-blue) / 0.05) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, hsl(var(--neon-pink) / 0.05) 0%, transparent 50%);
+  }
+  
+  .dark body {
+    background-image: radial-gradient(circle at 25% 25%, hsl(var(--neon-blue) / 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, hsl(var(--neon-pink) / 0.1) 0%, transparent 50%);
   }
 }
 
@@ -184,7 +217,13 @@
 
   .card-neon:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-neon);
+    box-shadow: 0 0 10px hsl(var(--neon-blue) / 0.25);
+  }
+
+  /* Service card hover effects */
+  .service-card-link:hover .card-neon {
+    transform: translateY(-6px);
+    box-shadow: 0 0 10px hsl(var(--neon-blue) / 0.25);
   }
 
   /* Gradient Text */
@@ -198,6 +237,11 @@
   /* Neon Glow Effect */
   .glow-neon {
     filter: drop-shadow(0 0 10px hsl(var(--neon-blue) / 0.5));
+  }
+
+  /* Reduced Neon Glow Effect - 50% less */
+  .glow-neon-reduced {
+    filter: drop-shadow(0 0 5px hsl(var(--neon-blue) / 0.25));
   }
 
   /* Animated Background */
@@ -237,13 +281,13 @@
 
   .video-background-element {
     @apply w-full h-full object-cover;
-    opacity: 1;
-    filter: brightness(1.2) contrast(1.1);
+    opacity: 0.8;
+    filter: brightness(0.7) contrast(1.1);
   }
 
   .video-overlay {
     @apply absolute inset-0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.3);
     z-index: 2;
   }
 
@@ -251,5 +295,41 @@
   nav, main, footer, .navbar, .footer {
     position: relative;
     z-index: 10;
+  }
+
+  /* Floating WhatsApp Button */
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    pointer-events: auto;
+    filter: drop-shadow(0 8px 32px rgba(37, 211, 102, 0.3));
+    /* Ensure it's always on the right side */
+    left: auto;
+    margin-left: 0;
+  }
+
+  .floating-whatsapp:hover {
+    filter: drop-shadow(0 12px 40px rgba(37, 211, 102, 0.5));
+  }
+
+  /* Responsive adjustments for floating button */
+  @media (max-width: 640px) {
+    .floating-whatsapp {
+      bottom: 1rem;
+      right: 1rem;
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .floating-whatsapp {
+      bottom: 0.75rem;
+      right: 0.75rem;
+      width: 3rem;
+      height: 3rem;
+    }
   }
 }

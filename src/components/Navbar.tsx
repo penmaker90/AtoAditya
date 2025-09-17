@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,6 @@ const Navbar = () => {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -43,13 +43,17 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <button className="btn-neon text-background font-semibold ml-4">
-              Get Quote
-            </button>
+            <div className="flex items-center space-x-4 ml-4">
+              <ThemeToggle />
+              <Link to="/contact" className="btn-neon text-background font-semibold">
+                Contact Us
+              </Link>
+            </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu button and theme toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground hover:text-neon-blue transition-colors p-2"
@@ -77,9 +81,9 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <button className="btn-neon text-background font-semibold w-full mt-4">
-                Get Quote
-              </button>
+              <Link to="/contact" className="btn-neon text-background font-semibold w-full mt-4">
+                Contact Us
+              </Link>
             </div>
           </div>
         )}

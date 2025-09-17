@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MapPin, Phone, Mail, MessageCircle, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, Clock, Send, AlertCircle, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -16,20 +16,76 @@ const Contact = () => {
     phone: "",
     message: ""
   });
+  const [formErrors, setFormErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+  const [isFormValid, setIsFormValid] = useState(false);
 
   // Google Apps Script Web App URL - Replace with your actual URL
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxlLhixHbfu-5TILetokyCO0kkvNM6oW0-bxkdLhC2Cewi3gcySz0ojJYWBP9MJZLr8/exec";
 
+  // Email validation regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Indian phone number validation regex (10 digits starting with 6, 7, 8, or 9)
+  const indianPhoneRegex = /^[6-9]\d{9}$/;
+
+  // Validate individual fields
+  const validateField = (name: string, value: string) => {
+    switch (name) {
+      case 'name':
+        return value.trim().length < 2 ? 'Name must be at least 2 characters long' : '';
+      case 'email':
+        return !emailRegex.test(value) ? 'Please enter a valid email address' : '';
+      case 'phone':
+        if (value.trim() === '') return ''; // Optional field
+        return !indianPhoneRegex.test(value.replace(/\D/g, '')) ? 'Please enter a valid 10-digit Indian mobile number' : '';
+      case 'message':
+        return value.trim().length < 10 ? 'Message must be at least 10 characters long' : '';
+      default:
+        return '';
+    }
+  };
+
+  // Validate entire form
+  const validateForm = () => {
+    const errors = {
+      name: validateField('name', formData.name),
+      email: validateField('email', formData.email),
+      phone: validateField('phone', formData.phone),
+      message: validateField('message', formData.message)
+    };
+    
+    setFormErrors(errors);
+    const isValid = !Object.values(errors).some(error => error !== '');
+    setIsFormValid(isValid);
+    return isValid;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      toast({
+        title: "Form Validation Error",
+        description: "Please fix the errors below and try again.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     // Prepare form data
     const submitData = {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone || 'Not provided',
-      message: formData.message,
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim() || 'Not provided',
+      message: formData.message.trim(),
       timestamp: new Date().toISOString()
     };
     
@@ -49,9 +105,6 @@ const Contact = () => {
       
       console.log('📬 Request sent successfully (no-cors mode)');
       
-      // Since we're using no-cors, we can't read the response
-      // But if we reach here, the request was sent
-      
       // Show success message
       toast({
         title: "Message Sent Successfully!",
@@ -60,6 +113,8 @@ const Contact = () => {
       
       // Reset form
       setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormErrors({ name: "", email: "", phone: "", message: "" });
+      setIsFormValid(false);
       
       // Log success for debugging
       console.log('✅ Form submission completed');
@@ -77,9 +132,25 @@ const Contact = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    
+    let processedValue = value;
+    
+    // For phone field, only allow digits and limit to 10 digits
+    if (name === 'phone') {
+      processedValue = value.replace(/\D/g, '').slice(0, 10);
+    }
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: processedValue
+    });
+
+    // Real-time validation for all fields
+    const error = validateField(name, processedValue);
+    setFormErrors({
+      ...formErrors,
+      [name]: error
     });
   };
 
@@ -146,6 +217,15 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/10 via-transparent to-neon-blue/10"></div>
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-8">
+          <img 
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&h=600&fit=crop&crop=center" 
+            alt="Contact us - Modern office workspace" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/70 to-background/50"></div>
+        </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-5xl md:text-7xl font-black text-gradient mb-8">
             Get in Touch
@@ -184,20 +264,34 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         placeholder="Your full name"
-                        className="input-neon w-full"
+                        className={`input-neon w-full ${formErrors.name ? 'border-red-500 focus:ring-red-500' : ''}`}
                       />
+                      {formErrors.name && (
+                        <div className="flex items-center space-x-2 text-red-500 text-sm">
+                          <AlertCircle className="h-4 w-4" />
+                          <span>{formErrors.name}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-foreground">Phone Number</Label>
+                      <Label htmlFor="phone" className="text-foreground">Phone Number (Indian)</Label>
                       <input
                         id="phone"
                         name="phone"
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="Your phone number"
-                        className="input-neon w-full"
+                        placeholder="9876543210"
+                        maxLength={10}
+                        className={`input-neon w-full ${formErrors.phone ? 'border-red-500 focus:ring-red-500' : ''}`}
                       />
+                      {formErrors.phone && (
+                        <div className="flex items-center space-x-2 text-red-500 text-sm">
+                          <AlertCircle className="h-4 w-4" />
+                          <span>{formErrors.phone}</span>
+                        </div>
+                      )}
+                      <p className="text-xs text-muted-foreground">10-digit Indian mobile number (6/7/8/9xxxxxxxxx)</p>
                     </div>
                   </div>
                   
@@ -211,8 +305,14 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       placeholder="your.email@example.com"
-                      className="input-neon w-full"
+                      className={`input-neon w-full ${formErrors.email ? 'border-red-500 focus:ring-red-500' : ''}`}
                     />
+                    {formErrors.email && (
+                      <div className="flex items-center space-x-2 text-red-500 text-sm">
+                        <AlertCircle className="h-4 w-4" />
+                        <span>{formErrors.email}</span>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="space-y-2">
@@ -225,27 +325,56 @@ const Contact = () => {
                       required
                       placeholder="Tell us about your project requirements..."
                       rows={6}
-                      className="input-neon w-full resize-none"
+                      className={`input-neon w-full resize-none ${formErrors.message ? 'border-red-500 focus:ring-red-500' : ''}`}
                     />
+                    {formErrors.message && (
+                      <div className="flex items-center space-x-2 text-red-500 text-sm">
+                        <AlertCircle className="h-4 w-4" />
+                        <span>{formErrors.message}</span>
+                      </div>
+                    )}
                   </div>
                   
-                  <button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className={`btn-neon text-background font-semibold w-full py-4 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-background mr-2"></div>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-5 w-5" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
+                  {/* Enhanced Submit Button */}
+                  <div className="pt-4">
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleSubmit(e);
+                      }}
+                      className={`relative w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer z-20 ${
+                        isSubmitting 
+                          ? 'bg-gray-500 cursor-not-allowed text-white' 
+                          : 'bg-gradient-to-r from-neon-blue to-neon-pink hover:from-neon-blue/80 hover:to-neon-pink/80 text-white shadow-lg hover:shadow-neon transform hover:-translate-y-1'
+                      }`}
+                      style={{ pointerEvents: 'auto' }}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                          <span>Sending Message...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5" />
+                          <span>Send Message</span>
+                        </>
+                      )}
+                    </button>
+                    
+                    {/* Form Status Messages */}
+                    <div className="mt-3 text-center">
+                      {Object.values(formErrors).some(error => error) && (
+                        <p className="text-orange-500 text-sm flex items-center justify-center space-x-2">
+                          <AlertCircle className="h-4 w-4" />
+                          <span>Please review the form fields above</span>
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

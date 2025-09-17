@@ -10,6 +10,7 @@ const VideoBackground = () => {
         muted
         loop
         playsInline
+        preload="auto"
       >
         <source src={waterRippleVideo} type="video/mp4" />
         Your browser does not support the video tag.

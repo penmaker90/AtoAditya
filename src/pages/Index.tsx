@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Package, FileText, Umbrella, Printer, Palette, Lightbulb, Settings, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import ImageSlider from "@/components/ImageSlider";
+import VideoBackground from "@/components/WaterRippleEffect";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 const Index = () => {
@@ -10,27 +11,32 @@ const Index = () => {
     {
       icon: Package,
       title: "Merchandise",
-      description: "Branded apparel, corporate gifts, and promotional items that make your brand memorable."
+      description: "Branded apparel, corporate gifts, and promotional items that make your brand memorable.",
+      anchor: "merchandise"
     },
     {
       icon: FileText,
       title: "Office Supplies",
-      description: "Branded essentials for everyday office use including lanyards, badges, and stationery."
+      description: "Branded essentials for everyday office use including lanyards, badges, and stationery.",
+      anchor: "office-supplies"
     },
     {
       icon: Umbrella,
       title: "Outdoor Essentials",
-      description: "Durable promotional items for outdoor events and brand visibility."
+      description: "Durable promotional items for outdoor events and brand visibility.",
+      anchor: "outdoor-essentials"
     },
     {
       icon: Printer,
       title: "Printing",
-      description: "High-quality printing services for banners, brochures, and marketing materials."
+      description: "High-quality printing services for banners, brochures, and marketing materials.",
+      anchor: "printing"
     },
     {
       icon: Palette,
       title: "Designing",
-      description: "Creative design services to bring your Brand vision to life."
+      description: "Creative design services to bring your brand vision to life.",
+      anchor: "designing"
     }
   ];
 
@@ -56,8 +62,8 @@ const Index = () => {
     <div className="min-h-screen bg-animated">
       {/* Hero Section */}
       <section className="relative flex h-screen items-center justify-center overflow-hidden bg-black text-center text-white">
-      {/* Ripple background */}
-      <div className="absolute inset-0 animate-ripple bg-[radial-gradient(circle_at_30%_30%,rgba(0,245,255,0.1),transparent_20%),radial-gradient(circle_at_70%_70%,rgba(255,46,146,0.1),transparent_20%)] blur-2xl pointer-events-none"></div>
+      {/* Water Ripple Video Background */}
+      <VideoBackground />
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl px-6">
@@ -68,12 +74,12 @@ const Index = () => {
           Your ultimate customized marketing solution partner
         </p>
         <div className="mt-6 flex justify-center gap-4">
-          <button className="rounded-full px-6 py-3 bg-gradient-to-r from-[#00F5FF] to-[#FF2E92] text-black font-semibold shadow-lg hover:shadow-[#00F5FF]/50 transition">
+          <Link to="/services" className="rounded-full px-6 py-3 bg-gradient-to-r from-[#00F5FF] to-[#FF2E92] text-black font-semibold shadow-lg hover:shadow-[#00F5FF]/50 transition">
             Explore Services
-          </button>
-          <button className="rounded-full px-6 py-3 border border-gray-500 text-white hover:border-[#A020F0] transition">
+          </Link>
+          <Link to="/contact" className="rounded-full px-6 py-3 border border-gray-500 text-white hover:border-[#A020F0] transition">
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
     </section>
@@ -86,10 +92,11 @@ const Index = () => {
             <div className="h-96 w-full">
               <ImageSlider 
                 images={[
-                  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
-                  "https://images.unsplash.com/photo-1664382953518-4ba5bb8b5a0f?w=600&h=400&fit=crop&crop=center",
-                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center",
-                  "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&crop=center"
+                  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&h=400&fit=crop&crop=center", // Modern office workspace
+                  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&crop=center", // Business team collaboration
+                  "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&crop=center", // Printing and design materials
+                  "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop&crop=center", // Corporate merchandise display
+                  "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&h=400&fit=crop&crop=center"  // Marketing strategy and planning
                 ]}
                 autoSlideInterval={4000}
               />
@@ -125,17 +132,23 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="card-neon text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-gradient-to-br from-neon-blue/20 to-neon-pink/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="h-8 w-8 text-neon-blue" />
+              <Link
+                key={index}
+                to={`/services#${service.anchor}`}
+                className="service-card-link block transition-transform duration-300"
+              >
+                <div className="card-neon text-center group cursor-pointer">
+                  <div className="w-16 h-16 bg-gradient-to-br from-neon-blue/20 to-neon-pink/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="h-8 w-8 text-neon-blue" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -167,6 +180,83 @@ const Index = () => {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Showcase */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-neon-purple/5"></div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-gradient mb-4">
+              Our Work in Action
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              See how we've helped businesses transform their brand presence
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Portfolio Item 1 */}
+            <div className="card-neon overflow-hidden group">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=400&h=300&fit=crop&crop=center" 
+                  alt="Corporate Branding Project" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gradient mb-2">
+                  Corporate Branding
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Complete brand identity and promotional materials for enterprise clients.
+                </p>
+              </div>
+            </div>
+
+            {/* Portfolio Item 2 */}
+            <div className="card-neon overflow-hidden group">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&h=300&fit=crop&crop=center" 
+                  alt="Event Marketing Materials" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gradient mb-2">
+                  Event Marketing
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Custom banners, displays, and promotional items for corporate events.
+                </p>
+              </div>
+            </div>
+
+            {/* Portfolio Item 3 */}
+            <div className="card-neon overflow-hidden group">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=400&h=300&fit=crop&crop=center" 
+                  alt="Custom Merchandise" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gradient mb-2">
+                  Custom Merchandise
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Unique branded products that strengthen customer relationships.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

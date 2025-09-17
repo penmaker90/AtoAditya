@@ -52,21 +52,35 @@ const About = () => {
 
       {/* Company Story */}
       <section className="py-20 relative">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-gradient mb-8">
-              Our Story
-            </h2>
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed text-left">
-              <p>
-                Founded with a vision to transform how businesses approach marketing and branding, A2Z Solutions has grown into a comprehensive partner for companies of all sizes. We understand that in today's competitive landscape, standing out requires more than just good products – it requires exceptional brand presentation.
-              </p>
-              <p>
-                Our journey began with a simple belief: every business deserves access to high-quality, customized marketing materials that reflect their unique identity. From humble beginnings, we've expanded our services to cover everything from merchandise and printing to creative design and corporate gifting.
-              </p>
-              <p>
-                Today, we work with businesses across industries, helping them create memorable brand experiences through innovative promotional solutions. Our commitment to quality, creativity, and customer satisfaction continues to drive everything we do.
-              </p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Story Content */}
+            <div>
+              <h2 className="text-4xl md:text-5xl font-black text-gradient mb-8">
+                Our Story
+              </h2>
+              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                <p>
+                  Founded with a vision to transform how businesses approach marketing and branding, A2Z Solutions has grown into a comprehensive partner for companies of all sizes. We understand that in today's competitive landscape, standing out requires more than just good products – it requires exceptional brand presentation.
+                </p>
+                <p>
+                  Our journey began with a simple belief: every business deserves access to high-quality, customized marketing materials that reflect their unique identity. From humble beginnings, we've expanded our services to cover everything from merchandise and printing to creative design and corporate gifting.
+                </p>
+                <p>
+                  Today, we work with businesses across industries, helping them create memorable brand experiences through innovative promotional solutions. Our commitment to quality, creativity, and customer satisfaction continues to drive everything we do.
+                </p>
+              </div>
+            </div>
+            
+            {/* Story Image */}
+            <div className="relative">
+              <div className="card-neon overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&h=400&fit=crop&crop=center" 
+                  alt="Team collaboration and business growth" 
+                  className="w-full h-80 object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -85,16 +99,66 @@ const About = () => {
           </div>
           
           {/* Team Placeholder */}
-          <div className="card-neon text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Users className="h-12 w-12 text-neon-blue" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Team Member 1 */}
+            <div className="card-neon text-center">
+              <div className="relative mb-6">
+                <img 
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=center" 
+                  alt="Creative Director" 
+                  className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-neon-blue/30"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-gradient mb-2">
+                Creative Team
+              </h3>
+              <p className="text-muted-foreground text-sm mb-3">
+                Design & Branding Specialists
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Our creative minds bring your brand vision to life with innovative designs and strategic thinking.
+              </p>
             </div>
-            <h3 className="text-2xl font-semibold text-gradient mb-4">
-              Our Expert Team
-            </h3>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Our diverse team of designers, project managers, and marketing experts work collaboratively to ensure every project exceeds expectations. With years of combined experience in the industry, we bring creativity, professionalism, and attention to detail to every partnership.
-            </p>
+
+            {/* Team Member 2 */}
+            <div className="card-neon text-center">
+              <div className="relative mb-6">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=center" 
+                  alt="Project Manager" 
+                  className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-neon-pink/30"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-gradient mb-2">
+                Project Management
+              </h3>
+              <p className="text-muted-foreground text-sm mb-3">
+                Operations & Quality Control
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Ensuring every project is delivered on time with the highest quality standards and attention to detail.
+              </p>
+            </div>
+
+            {/* Team Member 3 */}
+            <div className="card-neon text-center">
+              <div className="relative mb-6">
+                <img 
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=center" 
+                  alt="Business Development" 
+                  className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-neon-purple/30"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-gradient mb-2">
+                Business Development
+              </h3>
+              <p className="text-muted-foreground text-sm mb-3">
+                Client Relations & Strategy
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Building lasting partnerships and understanding your business needs to deliver customized solutions.
+              </p>
+            </div>
           </div>
         </div>
       </section>
